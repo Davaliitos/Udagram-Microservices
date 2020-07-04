@@ -1,17 +1,20 @@
-version: '3'
+version: "3.8"
 services:
   udagram-api-users:
-    build : ./api-users
+    build : 
+      context: ./api-users
     image: davaliitos/udagram-api-users
     ports:
       - 8080:8080
   udagram-api-feed:
-    build : ./api-feed
+    build : 
+      context: ./api-feed
     image: davaliitos/udagram-api-feed
     ports:
       - 8080:8080
   udagram-frontend:
-    build : ./frontend
+    build : 
+      context: ./frontend
     image: davaliitos/udagram-frontend
     ports:
       - "8100:80"
