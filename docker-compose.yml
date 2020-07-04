@@ -18,4 +18,14 @@ services:
     image: davaliitos/udagram-frontend
     ports:
       - "8100:80"
+  reverseproxy:
+    build:
+      context: ./reverseproxy
+    image: davaliitos/reverse-proxy
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - udagram-api-users
+      - udagram-api-feed
 
