@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-api-feed
+  labels:
+    app: udagram-api-feed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udagram-api-feed
+  template:
+    metadata:
+      labels:
+        app: udagram-api-feed
+    spec:
+      containers:
+      - name: udagram-api-feed
+        image: davaliitos/udagram-api-feed
+        imagePullPolicy: Always  
+        env:
+        - name: POSTGRES_USERNAME
+          value: udagramfernando
+        - name: POSTGRES_PASSWORD
+          value: udagramfernando
+        - name: POSTGRES_DATABASE
+          value: udagramfernandodev
+        - name: POSTGRES_HOST
+          value: udagramfernando.cezqzwxgzgvo.us-east-1.rds.amazonaws.com
+        - name : AWS_REGION
+          value : us-east-1
+        - name : AWS_PROFILE
+          value: default
+        - name: AWS_MEDIA_BUCKET
+          value: udagram-fdavalos-dev
+        - name: JWT_SECRET
+          value: Davtid81_
+        - name: URL
+          value: http://localhost:8100
