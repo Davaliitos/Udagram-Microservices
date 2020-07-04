@@ -1,0 +1,18 @@
+version: '3'
+services:
+  udagram-api-users:
+    build : ./api-users
+    image: davaliitos/udagram-api-users
+    ports:
+      - 8080:8080
+  udagram-api-feed:
+    build : ./api-feed
+    image: davaliitos/udagram-api-feed
+    ports:
+      - 8080:8080
+  udagram-frontend:
+    build : ./frontend
+    image: davaliitos/udagram-frontend
+    ports:
+      - "8100:80"
+
