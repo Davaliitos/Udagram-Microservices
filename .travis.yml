@@ -8,4 +8,8 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 install:
-  - docker-compose -f docker-compose.yml
+  - docker-compose build
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker-compose push
