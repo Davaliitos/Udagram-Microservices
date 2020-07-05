@@ -40,5 +40,7 @@ spec:
           value: udagram-fdavalos-dev
         - name: JWT_SECRET
           value: Davtid81_
+        - name: URL
+          value: http://localhost:8100
         ports:
         - containerPort: 80
