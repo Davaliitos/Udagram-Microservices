@@ -1,23 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: udagram-api-users
+  name: udagram-api-user
   labels:
-    app: udagram-api-users
+    app: udagram-api-user
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: udagram-api-users
+      app: udagram-api-user
   template:
     metadata:
       labels:
-        app: udagram-api-users
+        app: udagram-api-user
     spec:
       containers:
-      - name: udagram-api-users
-        image: davaliitos/udagram-api-users
-        imagePullPolicy: Always  
+      - name: udagram-api-user
+        image: davaliitos/udagram-api-users:latest
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"  
         env:
         - name: POSTGRES_USERNAME
           value: udagramfernando
@@ -27,13 +32,13 @@ spec:
           value: udagramfernandodev
         - name: POSTGRES_HOST
           value: udagramfernando.cezqzwxgzgvo.us-east-1.rds.amazonaws.com
-        - name : AWS_REGION
-          value : us-east-1
-        - name : AWS_PROFILE
+        - name: AWS_REGION
+          value: us-east-1
+        - name: AWS_PROFILE
           value: default
         - name: AWS_MEDIA_BUCKET
           value: udagram-fdavalos-dev
         - name: JWT_SECRET
           value: Davtid81_
-        - name: URL
-          value: http://localhost:8100
+        ports:
+        - containerPort: 80
