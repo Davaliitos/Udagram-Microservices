@@ -41,6 +41,6 @@ spec:
         - name: JWT_SECRET
           value: Davtid81_
         - name: URL
-          value: http://localhost:8100
+          value: http://a4ba78975cd0e4ef183cc1ac977c2dae-407749927.us-east-1.elb.amazonaws.com:8100
         ports:
         - containerPort: 80
