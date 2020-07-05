@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: udagram-frontend
   labels:
-    service: udagram-frontend  
+    app: udagram-frontend  
 spec:
   replicas: 1
   selector:
@@ -16,6 +16,8 @@ spec:
     spec:
       containers:
       - image: davaliitos/udagram-frontend
+        imagePullPolicy: Always
         name: udagram-frontend       
         ports:
         - containerPort: 80
+      restartPolicy: Always
