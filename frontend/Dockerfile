@@ -1,4 +1,4 @@
-FROM beevelop/ionic:latest AS ionic
+FROM beevelop/ionic AS ionic
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm ci
