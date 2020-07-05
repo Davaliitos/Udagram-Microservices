@@ -5,7 +5,6 @@ metadata:
   labels:
     app: udagram-api-users
 spec:
-  type: LoadBalancer
   selector:
     app: udagram-api-users
   ports:
