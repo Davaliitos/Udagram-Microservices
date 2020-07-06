@@ -5,6 +5,7 @@ metadata:
   labels:
     app: udagram-api-feed
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: udagram-api-feed
@@ -25,22 +26,58 @@ spec:
             cpu: "500m"  
         env:
         - name: POSTGRES_USERNAME
-          value: udagramfernando
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_USERNAME
         - name: POSTGRES_PASSWORD
-          value: udagramfernando
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_PASSWORD
         - name: POSTGRES_DATABASE
-          value: udagramfernandodev
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_DATABASE
         - name: POSTGRES_HOST
-          value: udagramfernando.cezqzwxgzgvo.us-east-1.rds.amazonaws.com
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_HOST
         - name: AWS_REGION
-          value: us-east-1
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_REGION
         - name: AWS_PROFILE
-          value: default
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_PROFILE
         - name: AWS_MEDIA_BUCKET
-          value: udagram-fdavalos-dev
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_MEDIA_BUCKET
         - name: JWT_SECRET
-          value: Davtid81_
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: JWT_SECRET
         - name: URL
-          value: http://a4ba78975cd0e4ef183cc1ac977c2dae-407749927.us-east-1.elb.amazonaws.com:8100
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: URL
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: aws-secret
+          mountPath: "/root/.aws/"
+          readOnly: true
+      volumes:
+        - name: aws-secret
+          secret:
+            secretName: aws-secret
+      
